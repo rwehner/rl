@@ -1,0 +1,7 @@
+This is the test text file.
+
+It really has no puspose but to provide some
+text in a file for the homework project to 
+open and display.
+
+TEST2.TXT

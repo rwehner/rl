@@ -1,0 +1,5 @@
+Alternative possibility:
+-------------------------
+def countext():
+    files = glob.glob('*')
+    return Counter([ext for name, ext in [os.path.splitext(file) for file in files]])
