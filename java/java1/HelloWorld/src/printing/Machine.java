@@ -3,7 +3,7 @@ package printing;
 /**
  * Created by rwehner on 12/17/14.
  */
-public class Machine
+public class Machine implements IMachine
 {
     protected boolean isOn;
 
@@ -21,5 +21,10 @@ public class Machine
     public void TurnOff()
     {
         isOn = false;
+    }
+
+    public boolean isOn()
+    {
+        return isOn;
     }
 }

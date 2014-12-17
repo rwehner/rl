@@ -1,6 +1,6 @@
 package greetings;
 
-import printing.Machine;
+import printing.IMachine;
 import printing.Printer;
 
 /**
@@ -15,7 +15,7 @@ public class HelloWorld {
         //myPrinter.TurnOff();
         //myPrinter.print(1);
         //myPrinter.printColors();
-        Machine machine = new Printer(true, "My Printer");
+        IMachine machine = new Printer(true, "My Printer");
 
         machine.TurnOn();
 
