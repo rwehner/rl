@@ -5,6 +5,8 @@ import printing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -18,21 +20,15 @@ public class HelloWorld {
         //printer.print(2);
         //printer.getPages();
 
-        Set<Integer> mySet = new HashSet<Integer>();
-        mySet.add(1);
-        mySet.add(2);
-        mySet.add(3);
-        mySet.add(1);
-        System.out.println(mySet.size());
+        Queue<String> myQueue = new LinkedList<String>();
 
-        Set<String> anotherSet = new HashSet<String>();
-        anotherSet.add("a");
-        anotherSet.add("b");
-        anotherSet.add("aaa");
-        anotherSet.add("aa" + "a");
-        anotherSet.add("ab");
+        myQueue.offer("a");
+        myQueue.offer("b");
+        myQueue.offer("c");
 
-        System.out.println(anotherSet.size());
-        System.out.println(anotherSet.toString());
+        while(myQueue.peek() != null) {
+            System.out.println(myQueue.poll());
+        }
+
     }
 }
