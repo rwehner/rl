@@ -4,10 +4,7 @@ import printing.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by rwehner on 12/16/14.
@@ -20,15 +17,38 @@ public class HelloWorld {
         //printer.print(2);
         //printer.getPages();
 
-        Queue<String> myQueue = new LinkedList<String>();
+        Map<String, List<Integer>> testScores = new HashMap<String, List<Integer>>();
 
-        myQueue.offer("a");
-        myQueue.offer("b");
-        myQueue.offer("c");
+        List<Integer> joesTestScores = new ArrayList<Integer>();
+        joesTestScores.add(85);
+        joesTestScores.add(97);
+        joesTestScores.add(64);
+        testScores.put("Joe", joesTestScores);
 
-        while(myQueue.peek() != null) {
-            System.out.println(myQueue.poll());
+        List<Integer> amyTestScores = new ArrayList<Integer>();
+        amyTestScores.add(99);
+        amyTestScores.add(78);
+        amyTestScores.add(100);
+        amyTestScores.add(100);
+        amyTestScores.add(100);
+        amyTestScores.add(100);
+        testScores.put("Amy", amyTestScores);
+
+        List<Integer> fredTestScores = new ArrayList<Integer>();
+        fredTestScores.add(100);
+        fredTestScores.add(80);
+        testScores.put("Fred", fredTestScores);
+
+        printScores("Joe", testScores);
+        printScores("Amy", testScores);
+        printScores("Fred", testScores);
+    }
+
+    public static void printScores(String studentName, Map<String, List<Integer>> scoresMap) {
+        List<Integer> studentScores = scoresMap.get(studentName);
+        System.out.println(studentName + ":");
+        for( int score : studentScores) {
+            System.out.println("\t" + score);
         }
-
     }
 }
