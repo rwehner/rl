@@ -1,5 +1,8 @@
 package printing;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by rwehner on 12/16/14.
  */
@@ -9,6 +12,7 @@ public class Printer<T> implements IMachine
     private PaperTray paperTray = new PaperTray();
     private Machine machine;
     private T cartridge;
+    private List<Page> pages = new ArrayList<Page>();
 
 
     public Printer(boolean isOn, String modelNumber, T cartridge)
@@ -58,11 +62,18 @@ public class Printer<T> implements IMachine
 
         while (copies > 0 && !paperTray.isEmpty())
         {
-            System.out.println(textToPrint);
+            //System.out.println(textToPrint);
+            pages.add(new Page(textToPrint));
             copies--;
             paperTray.usePage();
         }
 
+    }
+
+    public void outputPages() {
+        for(Page currentPage : pages) {
+            System.out.println(currentPage.getText());
+        }
     }
 
     public String getStatusString() {

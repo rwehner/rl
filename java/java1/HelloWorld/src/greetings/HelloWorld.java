@@ -12,17 +12,8 @@ public class HelloWorld {
     public static void main(String[] args)
     {
         Printer<BWCartridge> printer = new Printer<BWCartridge>(true, "My Printer", new BWCartridge());
-
-        try {
-
-            printer.print(-1);
-        }
-        catch (IllegalArgumentException exception) {
-            System.out.println(exception.getMessage());
-            return;
-        }
-        finally {
-            printer.TurnOff();
-        }
+        printer.loadPaper(5);
+        printer.print(5);
+        printer.outputPages();
     }
 }
