@@ -3,17 +3,23 @@ package printing;
 /**
  * Created by rwehner on 12/16/14.
  */
-public class Printer implements IMachine
+public class Printer<T> implements IMachine
 {
     private String modelNumber;
     private PaperTray paperTray = new PaperTray();
     private Machine machine;
+    private T cartridge;
 
 
-    public Printer(boolean isOn, String modelNumber)
+    public Printer(boolean isOn, String modelNumber, T cartridge)
     {
         machine = new Machine(isOn);
         this.modelNumber = modelNumber;
+        this.cartridge = cartridge;
+    }
+
+    public T getCartridge() {
+        return cartridge;
     }
 
     @Override
@@ -34,9 +40,16 @@ public class Printer implements IMachine
         return machine.isOn();
     }
 
+    public <U extends ICartridge> void printUsingCartridge(U cartridge, String message) {
+        System.out.println(cartridge.getFillPercentage());
+        System.out.println(message);
+        System.out.println(cartridge.toString());
+    }
+
     public void print(int copies)
     {
 
+        //System.out.println(cartridge.getFillPercentage());
         String onStatus = "";
         if(machine.isOn())
         {
