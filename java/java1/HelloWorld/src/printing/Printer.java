@@ -1,7 +1,9 @@
 package printing;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by rwehner on 12/16/14.
@@ -12,7 +14,8 @@ public class Printer<T> implements IMachine
     private PaperTray paperTray = new PaperTray();
     private Machine machine;
     private T cartridge;
-    private List<Page> pages = new ArrayList<Page>();
+    //private List<Page> pages = new ArrayList<Page>();
+    private Map<Integer, Page> pagesMap = new HashMap<Integer, Page>();
 
 
     public Printer(boolean isOn, String modelNumber, T cartridge)
@@ -60,19 +63,28 @@ public class Printer<T> implements IMachine
         if(paperTray.isEmpty())
             System.out.println("Load more paper.");
 
+        int pageNumber = 1;
         while (copies > 0 && !paperTray.isEmpty())
         {
             //System.out.println(textToPrint);
-            pages.add(new Page(textToPrint));
+            //pages.add(new Page(textToPrint));
+            pagesMap.put(pageNumber, new Page(textToPrint + ":" + pageNumber));
             copies--;
             paperTray.usePage();
+            pageNumber++;
         }
 
     }
 
-    public void outputPages() {
-        for(Page currentPage : pages) {
-            System.out.println(currentPage.getText());
+    public void getPage(int pageNumber) {
+        System.out.println(pagesMap.get(pageNumber).getText());
+
+    }
+
+    public void getPages() {
+        int pageCount = pagesMap.size();
+        for(int i=1; i<=pageCount; i++) {
+            getPage(i);
         }
     }
 

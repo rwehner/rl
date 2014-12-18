@@ -13,7 +13,7 @@ public class HelloWorld {
     {
         Printer<BWCartridge> printer = new Printer<BWCartridge>(true, "My Printer", new BWCartridge());
         printer.loadPaper(5);
-        printer.print(5);
-        printer.outputPages();
+        printer.print(2);
+        printer.getPages();
     }
 }
