@@ -51,7 +51,7 @@ docs/_build/
 
 # Java/IntelliJ stuff
 out/
-.idea/
+*/.idea
 
 *.class
 

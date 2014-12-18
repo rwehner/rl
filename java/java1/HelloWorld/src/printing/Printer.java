@@ -48,19 +48,10 @@ public class Printer<T> implements IMachine
 
     public void print(int copies)
     {
+        checkCopies(copies);
 
-        //System.out.println(cartridge.getFillPercentage());
-        String onStatus = "";
-        if(machine.isOn())
-        {
-            onStatus = " is on.";
-        }
-        else
-        {
-            onStatus = " is off.";
-        }
-        String textToPrint = modelNumber + onStatus;
-
+        String onStatus = getStatusString();
+        String textToPrint = modelNumber + " is " + onStatus.toLowerCase() + ".";
 
         if(paperTray.isEmpty())
             System.out.println("Load more paper.");
@@ -72,6 +63,24 @@ public class Printer<T> implements IMachine
             paperTray.usePage();
         }
 
+    }
+
+    public String getStatusString() {
+        String onStatus = "";
+        if(machine.isOn())
+        {
+            onStatus = "ON";
+        }
+        else
+        {
+            onStatus = "OFF";
+        }
+        return onStatus;
+    }
+
+    private void checkCopies(int copies) {
+        if(copies < 0)
+            throw new IllegalArgumentException("Can't print fewer than 0 copies.");
     }
 
     public void printColors()

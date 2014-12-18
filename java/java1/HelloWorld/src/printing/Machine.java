@@ -21,6 +21,7 @@ public class Machine implements IMachine
     public void TurnOff()
     {
         isOn = false;
+        System.out.println("Machine is off!");
     }
 
     public boolean isOn()
