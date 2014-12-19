@@ -1,5 +1,6 @@
 package printing;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -58,8 +59,7 @@ public class Printer<T extends  ICartridge> implements IMachine
         checkCopies(copies);
 
         String onStatus = getStatusString();
-        String textToPrint = modelNumber + " is " + onStatus.toLowerCase() + ".";
-        textToPrint += "||" + cartridge.printColor() + "||";
+        String textToPrint = getTextFromfile();
 
         if(paperTray.isEmpty())
             System.out.println("Load more paper.");
@@ -77,6 +77,42 @@ public class Printer<T extends  ICartridge> implements IMachine
 
     }
 
+    private String getTextFromfile() {
+        FileReader reader = null;
+        BufferedReader bReader = null;
+
+        CapitalizationReader capReader = null;
+
+
+
+        String allText = "";
+        try {
+            reader = new FileReader("/var/tmp/test.txt");
+            bReader = new BufferedReader(reader);
+            capReader = new CapitalizationReader(bReader);
+
+            String line;
+            while((line = capReader.readLine() ) != null) {
+                allText += line + "\n";
+            }
+            return allText;
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if(capReader != null) {
+                try {
+                    capReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return "";
+    }
+
     public void getPage(int pageNumber) {
         System.out.println(pagesMap.get(pageNumber).getText());
 
@@ -87,6 +123,20 @@ public class Printer<T extends  ICartridge> implements IMachine
         for(int i=1; i<=pageCount; i++) {
             getPage(i);
         }
+    }
+    public void outputPage(int pageNumber) {
+        PrintWriter writer = null;
+        try {
+            writer = new PrintWriter(new FileWriter("/var/tmp/outputpage.txt"));
+            writer.println(pagesMap.get(pageNumber).getText());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(writer != null)
+                writer.close();
+        }
+
     }
 
     public String getStatusString() {
