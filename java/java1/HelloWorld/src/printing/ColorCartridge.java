@@ -3,13 +3,34 @@ package printing;
 /**
  * Created by rwehner on 12/17/14.
  */
-public class ColorCartridge implements ICartridge {
+public enum ColorCartridge implements ICartridge
+{
+    RED("Red"),
+    BLUE("Blue"),
+    GREEN("Green"),
+    YELLOW("Yellow");
+
+    private final String colorText;
+
+    private ColorCartridge(String colorText)
+    {
+        this.colorText = colorText;
+
+    }
+
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Color!";
     }
 
-    public String getFillPercentage() {
-        return "85%";
+    public String getFillPercentage()
+    {
+        return "97%";
+    }
+
+    @Override
+    public String printColor() {
+        return colorText;
     }
 }

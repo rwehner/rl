@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by rwehner on 12/16/14.
  */
-public class Printer<T> implements IMachine
+public class Printer<T extends  ICartridge> implements IMachine
 {
     private String modelNumber;
     private PaperTray paperTray = new PaperTray();
@@ -59,6 +59,7 @@ public class Printer<T> implements IMachine
 
         String onStatus = getStatusString();
         String textToPrint = modelNumber + " is " + onStatus.toLowerCase() + ".";
+        textToPrint += "||" + cartridge.printColor() + "||";
 
         if(paperTray.isEmpty())
             System.out.println("Load more paper.");
