@@ -1,5 +1,7 @@
 '''
 Warmup-1 exercises from codingbat.com
+
+Simple warmup problems to get started, no loops
 '''
 
 def sleep_in(weekday, vacation):
