@@ -2,46 +2,19 @@ package greetings;
 
 import printing.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-/**
- * Created by rwehner on 12/16/14.
- */
 public class HelloWorld {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Printer<ColorCartridge> printer = new Printer<ColorCartridge>(true, "My Printer", ColorCartridge.RED);
-        printer.loadPaper(5);
-        printer.print(2);
-        printer.outputPage(1);
+        printer.loadPaper(10);
 
-        Path path = Paths.get("/var/tmp/newtest.txt");
+        PrintingDevice annotation = printer.getClass().getAnnotation(PrintingDevice.class);
+        Method printMethod = printer.getClass().getMethod(annotation.defaultPrintMethod(), int.class);
+        printMethod.invoke(printer, annotation.defaultNumberOfCopies());
 
-        // Creating a empty file - like 'touch'
-        try {
-            Files.createFile(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        printer.outputPage(4);
 
-        // Deleting a file
-//        try {
-//            Files.deleteIfExists(path);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        // Moving a file
-        Path newPath = Paths.get("/var/tmp/newtest.txt-moved");
-        try {
-            Files.move(path, newPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

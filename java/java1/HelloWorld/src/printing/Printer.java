@@ -6,9 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by rwehner on 12/16/14.
- */
+@PrintingDevice(defaultPrintMethod = "print", defaultNumberOfCopies = 5)
 public class Printer<T extends  ICartridge> implements IMachine
 {
     private String modelNumber;
@@ -152,6 +150,7 @@ public class Printer<T extends  ICartridge> implements IMachine
         return onStatus;
     }
 
+    @SuppressWarnings("unused")
     private void checkCopies(int copies) {
         if(copies < 0)
             throw new IllegalArgumentException("Can't print fewer than 0 copies.");
