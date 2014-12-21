@@ -46,9 +46,11 @@ public class Printer<T extends  ICartridge> implements IMachine
         return machine.isOn();
     }
 
-    public <U extends ICartridge> void printUsingCartridge(U cartridge, String message) {
+    public synchronized <U extends ICartridge> void printUsingCartridge(U cartridge, String message) {
         //System.out.println(cartridge.getFillPercentage());
+        System.out.println("Entered: " + Thread.currentThread().getId());
         System.out.println(message);
+        System.out.println("Exited: " + Thread.currentThread().getId());
         //System.out.println(cartridge.toString());
     }
 
