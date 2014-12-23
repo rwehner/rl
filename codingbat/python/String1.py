@@ -9,14 +9,14 @@ def hello_name(name):
     '''
     Given a string name, e.g. "Bob", return a greeting of the form "Hello Bob!".
     '''
-    pass
+    return "Hello {0}!".format(name)
 
 def make_abba(a, b):
     '''
     Given two strings, a and b, return the result of putting them together in
     the order abba, e.g. "Hi" and "Bye" returns "HiByeByeHi".
     '''
-    pass
+    return a + b + b + a
 
 def make_tags(tag, word):
     '''
@@ -25,21 +25,21 @@ def make_tags(tag, word):
     the word "Yay". Given tag and word strings, create the HTML string with tags
     around the word, e.g. "<i>Yay</i>".
     '''
-    pass
+    return "<{0}>{1}</{0}>".format(tag, word)
 
 def make_out_word(out, word):
     '''
     Given an "out" string length 4, such as "<<>>", and a word, return a new
     string where the word is in the middle of the out string, e.g. "<<word>>".
     '''
-    pass
+    return out[:-2] + word + out[-2:]
 
 def extra_end(str):
     '''
     Given a string, return a new string made of 3 copies of the last 2 chars of
     the original string. The string length will be at least 2.
     '''
-    pass
+    return str[-2:] * 3
 
 def first_two(str):
     '''
@@ -48,21 +48,24 @@ def first_two(str):
     return whatever there is, so "X" yields "X", and the empty string ""
     yields the empty string "".
     '''
-    pass
+    if len(str) <= 2:
+        return str
+    else:
+        return str[:2]
 
 def first_half(str):
     '''
     Given a string of even length, return the first half. So the string "WooHoo"
     yields "Woo".
     '''
-    pass
+    return str[:len(str)//2]
 
 def without_end(str):
     '''
     Given a string, return a version without the first and last char, so
     "Hello" yields "ell". The string length will be at least 2.
     '''
-    pass
+    return str[1:-1]
 
 def combo_string(a, b):
     '''
@@ -70,18 +73,22 @@ def combo_string(a, b):
     with the shorter string on the outside and the longer string on the inside.
     The strings will not be the same length, but they may be empty (length 0).
     '''
-    pass
+    if len(a) > len(b):
+        return b + a + b
+    else:
+        return a + b + a
+
 
 def non_start(a, b):
     '''
     Given 2 strings, return their concatenation, except omit the first char of
     each. The strings will be at least length 1.
     '''
-    pass
+    return a[1:] + b[1:]
 
 def left2(str):
     '''
     Given a string, return a "rotated left 2" version where the first 2 chars
     are moved to the end. The string length will be at least 2.
     '''
-    pass
+    return str[2:] + str[:2]
