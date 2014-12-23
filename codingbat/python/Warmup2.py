@@ -42,28 +42,41 @@ def last2(str):
     length 2 appears in the string and also as the last 2 chars of the string,
     so "hixxxhi" yields 1 (we won't count the end substring).
     '''
-    last_two = str[-2:]
-    return str.count(last_two) -1
+    if len(str) < 2:
+        return 0
+
+    front, last_two = str[:-2], str[-2:]
+    print(front,last_two)
+    count = 0
+    for i in range(len(front)):
+        substr = front[i:i+2]
+        if substr == last_two:
+            count += 1
+    return count
 
 def array_count9(nums):
     '''
     Given an array of ints, return the number of 9's in the array.
     '''
-    pass
+    return nums.count(9)
 
 def array_front9(nums):
     '''
     Given an array of ints, return True if one of the first 4 elements in the
     array is a 9. The array length may be less than 4.
     '''
-    pass
+    return 9 in nums[:4]
 
 def array123(nums):
     '''
     Given an array of ints, return True if .. 1, 2, 3, .. appears in the
     array somewhere.
     '''
-    pass
+    for i in range(len(nums)):
+        if nums[i:i+3] == [1,2,3]:
+            return True
+    return False
+
 
 def string_match(a, b):
     '''
@@ -72,4 +85,13 @@ def string_match(a, b):
     since the "xx", "aa", and "az" substrings appear in the same place in
     both strings.
     '''
-    pass
+    if len(a) <= len(b):
+        str1, str2 = a, b
+    else:
+        str1, str2 = b, a
+
+    count = 0
+    for i in range(len(str1) - 1):
+        if str1[i:i+2] == str2[i:i+2]:
+            count += 1
+    return count
