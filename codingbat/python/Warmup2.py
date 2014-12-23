@@ -8,7 +8,7 @@ def string_times(str, n):
     '''
     Given a string and a non-negative int n, return a larger string that is n copies of the original string.
     '''
-    pass
+    return str * n
 
 def front_times(str, n):
     '''
@@ -16,20 +16,25 @@ def front_times(str, n):
     string is the first 3 chars, or whatever is there if the string is less
     than length 3. Return n copies of the front;
     '''
-    pass
+    if len(str) < 3:
+        return str * n
+    return str[:3] * n
 
 def string_bits(str):
     '''
     Given a string, return a new string made of every other char starting with
     the first, so "Hello" yields "Hlo".
     '''
-    pass
+    return str[0::2]
 
 def string_splosion(str):
     '''
     Given a non-empty string like "Code" return a string like "CCoCodCode".
     '''
-    pass
+    newstr = ''
+    for i in range(1, len(str)+1):
+        newstr += str[:i]
+    return newstr
 
 def last2(str):
     '''
@@ -37,7 +42,8 @@ def last2(str):
     length 2 appears in the string and also as the last 2 chars of the string,
     so "hixxxhi" yields 1 (we won't count the end substring).
     '''
-    pass
+    last_two = str[-2:]
+    return str.count(last_two) -1
 
 def array_count9(nums):
     '''
