@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 import "sort"
+import "strings"
 
 func main() {
 	// How do you access the 4th element of an array or slice?
@@ -29,4 +30,20 @@ func main() {
 		}
 	}
 	fmt.Println(smallest)
+
+	// simple map-based frequency counter
+	// probably a better way to do this exists in the stdlib
+	text := "one one two three one one four five six nine eight eight four three seven ten one two four four eight six"
+	words := strings.Fields(text)
+	counter := make(map[string]int)
+	for _, word := range words {
+		if _, ok := counter[word]; ok {
+			counter[word] += 1
+		} else {
+			counter[word] = 1
+		}
+	}
+	for word, wordCount := range counter {
+		fmt.Println(word, ":", wordCount)
+	}
 }
